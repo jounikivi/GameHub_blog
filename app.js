@@ -16,6 +16,16 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Blogi' });
 });
 
+// Reitti blogipostauksille
+app.get('/kirjoitukset', (req, res) => {
+  // Hae tai muodosta blogipostausdatasi täällä
+  const posts = [
+    { imageUrl: 'https://picsum.photos/200', title: 'Ensimmäinen blogikirjoitukseni', description: 'Tässä on lyhyt kuvaus ensimmäisestä blogikirjoituksestani...' },
+    { imageUrl: 'https://picsum.photos/201', title: 'Toinen blogikirjoitukseni', description: 'Tässä on lyhyt kuvaus toisesta blogikirjoituksestani...' },
+  ];
+  res.render('kirjoitukset', { posts });
+});
+
  //Käynnistää Express-sovellus
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
