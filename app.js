@@ -1,7 +1,7 @@
 // app.js
 import express from 'express'; // Express-kirjaston tuonti
 import mongoose from 'mongoose'; // Mongoose-kirjaston tuonti
-import Post from '../models/Post.js'; // Post-mallin tuonti
+import Post from './models/Post'; // Post-mallin tuonti
 import dotenv from 'dotenv'; // dotenv-kirjaston tuonti
 dotenv.config(); // dotenv-kirjaston konfigurointi
 
