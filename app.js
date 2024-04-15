@@ -8,10 +8,15 @@ dotenv.config(); // dotenv-kirjaston konfigurointi
 const app = express(); // Express-sovelluksen luonti
 
 // Yhdistä MongoDB-tietokantaan käyttäen ympäristömuuttujaa
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+// mongoose.connect(process.env.MONGODB_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+const database = process.env.MONGOLAB_URI;
+mongoose
+  .connect(database, { useUnifiedTopology: true, useNewUrlParser: true })
+  .then(() => console.log("yhteys on muodostettu"))
+  .catch((err) => console.log(err));
 
 app.use(express.json()); // Käytä JSON-middlewarea pyyntöjen käsittelyyn
 
