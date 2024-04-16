@@ -39,11 +39,24 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Blogi' });
 });
 
+app.get('/kirjoitukset', (req, res) => {
+  res.render('kirjoitukset', { title: 'Kirjoitukset' });
+});
+
 // Luo reitti uuden blogipostauksen luomiseen
 app.post('/posts', async (req, res) => {
   const newPost = new Post(req.body); // Luo uusi blogipostaus pyynnön rungosta
   const savedPost = await newPost.save(); // Tallenna uusi blogipostaus tietokantaan
   res.json(savedPost); // Lähetä tallennettu blogipostaus JSON-muodossa
+});
+
+app.get('/post/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.render('post', { post: post });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 // Määritä portti, jota sovellus kuuntelee
